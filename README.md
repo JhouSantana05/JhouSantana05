@@ -1,6 +1,6 @@
 <div align="center">
 
-# Olá, sou o Jhones Sandro! 👋
+# Olá, sou o Jhones Santana! 👋
 ### Fundador da **JS Web & Business** | Desenvolvedor Web & Soluções Digitais
 
 [![Website Vercel](https://img.shields.io/badge/Website-JS_Web_%26_Business-00f2fe?style=for-the-badge&logo=vercel&logoColor=white)](https://jhou-santana05.vercel.app/)
