@@ -17,7 +17,7 @@
 
 <!-- Efeito Digitação Calibrado (Sem corte lateral) -->
 <a href="https://wa.me/5511954532927">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=18&duration=2800&pause=1000&color=00F2FE&center=true&vCenter=true&width=750&height=50&lines=Construindo+Sistemas+Web+de+Alta+Conversão;Soluções+Sob+Medida+para+São+Miguel+Paulista+e+Região;JavaScript+•+Next.js+•+Prisma+•+Tailwind+•+Three.js" alt="Typing SVG" />
+
 </a>
 
 ---
