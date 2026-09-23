@@ -7,7 +7,7 @@ import {
   ShieldCheck,
   Zap,
   CheckCircle,
-  ArrowRight,
+  MessageCircle,
 } from 'lucide-react';
 
 export default function BentoGrid() {
@@ -122,8 +122,8 @@ export default function BentoGrid() {
               rel="noopener noreferrer"
               className="cosmic-btn-pill px-5 py-2.5 rounded-xl text-xs font-bold text-white inline-flex items-center gap-2 shrink-0"
             >
-              <span>Conversar Agora</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>Chamar no WhatsApp</span>
             </a>
           </div>
 

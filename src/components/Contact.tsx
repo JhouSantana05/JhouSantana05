@@ -35,7 +35,7 @@ export default function Contact() {
               className="btn-glow-whatsapp px-7 py-3.5 rounded-xl text-slate-950 font-extrabold text-sm sm:text-base inline-flex items-center gap-2.5 shadow-2xl"
             >
               <MessageCircle className="w-5 h-5 fill-slate-950 stroke-none" />
-              <span>Falar no WhatsApp com Jhones Santana (11 95453-2927)</span>
+              <span>Chamar no WhatsApp</span>
             </a>
           </div>
 

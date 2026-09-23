@@ -56,7 +56,7 @@ export default function About() {
                   className="btn-glow-whatsapp px-5 py-2.5 rounded-xl text-xs font-bold inline-flex items-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Conversar Direto no WhatsApp</span>
+                  <span>Chamar no WhatsApp</span>
                 </a>
                 <a
                   href="https://github.com/JhouSantana05"

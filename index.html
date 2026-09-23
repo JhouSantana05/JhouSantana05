@@ -8,16 +8,82 @@
   <meta name="keywords" content="criação de sites, sistemas web, landing page, catálogo online, desenvolvedor web sp, jhones santana, jhousantana05, js web business, são miguel paulista">
   <meta name="author" content="Jhones Santana - JS Web & Business">
 
+  <!-- Canonical & Indexação Robusta -->
+  <link rel="canonical" href="https://jhousantana05.github.io/JhouSantana05/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#07090e">
+
   <!-- OpenGraph / Redes Sociais -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jhousantana05.github.io/JhouSantana05/">
+  <meta property="og:site_name" content="JS Web & Business">
   <meta property="og:title" content="JS Web & Business | Sites de Alta Conversão & Sistemas Web">
-  <meta property="og:description" content="Transforme sua presença digital em uma máquina de fechar negócios com design 3D moderno e desenvolvimento web de alta performance.">
+  <meta property="og:description" content="Transforme sua presença digital em uma máquina de fechar negócios com design 3D moderno e desenvolvimento web de alta performance por Jhones Santana.">
   <meta property="og:image" content="https://raw.githubusercontent.com/JhouSantana05/cartao-visita/main/1000904715.jpg">
   <meta property="og:locale" content="pt_BR">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JS Web & Business | Sites de Alta Conversão">
+  <meta name="twitter:description" content="Design 3D cinematográfico e desenvolvimento web focado em conversão e fechamento no WhatsApp.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/JhouSantana05/cartao-visita/main/1000904715.jpg">
+
+  <!-- Schema.org JSON-LD (SEO Estruturado do Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://jhousantana05.github.io/JhouSantana05/#website",
+        "url": "https://jhousantana05.github.io/JhouSantana05/",
+        "name": "JS Web & Business",
+        "description": "Desenvolvimento de sites de alta conversão, catálogos online e sistemas web sob medida.",
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://jhousantana05.github.io/JhouSantana05/#business",
+        "name": "JS Web & Business",
+        "image": "https://raw.githubusercontent.com/JhouSantana05/cartao-visita/main/1000904715.jpg",
+        "telephone": "+55-11-95453-2927",
+        "priceRange": "$$",
+        "founder": {
+          "@type": "Person",
+          "name": "Jhones Santana"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "08:00",
+            "closes": "22:00"
+          }
+        ],
+        "url": "https://jhousantana05.github.io/JhouSantana05/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Otimizações Críticas de Velocidade & PageSpeed -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+
+  <!-- Preload do 1º Frame Crítico (LCP Otimizado) -->
+  <link rel="preload" as="image" href="imagens/ezgif-frame-001.png" fetchpriority="high">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN com Configuração de Cores -->
@@ -46,11 +112,9 @@
     }
   </script>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Three.js CDN para 3D WebGL -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lucide Icons & Three.js Defer -->
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <!-- Estilos Customizados -->
   <link rel="stylesheet" href="css/styles.css">
@@ -58,59 +122,22 @@
 <body class="bg-[#07090e] text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950 relative">
 
   <!-- ========================================================================
-       BARRA DE NAVEGAÇÃO FIXA (GLASSMORPHISM)
+       BARRA DE NAVEGAÇÃO FIXA (GLASSMORPHISM) - LOGO CENTRALIZADO
        ======================================================================== -->
   <header id="main-header" class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <!-- Logotipo da Empresa -->
-      <a href="#" class="flex items-center gap-3 group">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-center">
+      <!-- Logotipo da Empresa Centralizado -->
+      <a href="#" class="flex items-center gap-3 group text-center" aria-label="JS Web & Business - Início">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
           JS
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col text-left">
           <span class="font-extrabold text-lg tracking-tight text-white group-hover:text-cyan-400 transition-colors">
             JS Web & Business
           </span>
           <span class="text-[10px] text-slate-400 font-mono tracking-wider uppercase">Sites & Sistemas de Alta Conversão</span>
         </div>
       </a>
-
-      <!-- Menu Desktop -->
-      <nav class="hidden md:flex items-center gap-8">
-        <a href="#tecnologias" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Tecnologias</a>
-        <a href="#ecossistema" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Ecossistema</a>
-        <a href="#projetos" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Projetos Reais</a>
-        <a href="#contato" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors">Contato</a>
-      </nav>
-
-      <!-- Botão de Ação do Header (WhatsApp Direto) -->
-      <div class="hidden md:flex items-center gap-4">
-        <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Gostaria%20de%20um%20or%C3%A7amento%20com%20a%20JS%20Web%20%26%20Business." target="_blank" rel="noopener noreferrer" class="btn-glow-whatsapp px-5 py-2.5 rounded-full text-xs font-bold inline-flex items-center gap-2 shadow-lg">
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
-          <span>Falar no WhatsApp</span>
-        </a>
-      </div>
-
-      <!-- Botão Hambúrguer Mobile -->
-      <div class="flex md:hidden">
-        <button id="mobile-menu-btn" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Menu Dropdown Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden flex-col px-6 py-6 space-y-4 bg-slate-950/95 border-b border-slate-800 backdrop-blur-xl">
-      <a href="#tecnologias" class="mobile-nav-link text-base font-medium text-slate-200 hover:text-cyan-400 py-1">Tecnologias</a>
-      <a href="#ecossistema" class="mobile-nav-link text-base font-medium text-slate-200 hover:text-cyan-400 py-1">Ecossistema</a>
-      <a href="#projetos" class="mobile-nav-link text-base font-medium text-slate-200 hover:text-cyan-400 py-1">Projetos Reais</a>
-      <a href="#contato" class="mobile-nav-link text-base font-medium text-slate-200 hover:text-cyan-400 py-1">Falar no WhatsApp</a>
-      <div class="pt-3">
-        <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Gostaria%20de%20um%20or%C3%A7amento%20com%20a%20JS%20Web%20%26%20Business." target="_blank" rel="noopener noreferrer" class="btn-glow-whatsapp w-full justify-center py-3 rounded-xl text-sm font-bold inline-flex items-center gap-2">
-          <i data-lucide="message-circle" class="w-5 h-5"></i>
-          <span>Chamar no WhatsApp (11 95453-2927)</span>
-        </a>
-      </div>
     </div>
   </header>
 
@@ -152,8 +179,8 @@
           <!-- Ações Rápidas -->
           <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mb-8">
             <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Quero%20iniciar%20um%20projeto%20com%20a%20JS%20Web%20%26%20Business." target="_blank" rel="noopener noreferrer" class="btn-glow-cyan px-7 py-3.5 rounded-xl text-slate-950 font-extrabold text-sm inline-flex items-center justify-center gap-2.5 shadow-xl">
-              <i data-lucide="zap" class="w-4 h-4 fill-slate-950"></i>
-              <span>Iniciar Projeto no WhatsApp</span>
+              <i data-lucide="message-circle" class="w-4 h-4 fill-slate-950 stroke-none"></i>
+              <span>Chamar no WhatsApp</span>
             </a>
 
             <a href="#projetos" class="px-6 py-3.5 rounded-xl bg-slate-900/50 hover:bg-slate-800/80 text-slate-200 hover:text-white font-bold text-sm inline-flex items-center justify-center gap-2 border border-slate-700/60 backdrop-blur-md transition-all">
@@ -356,8 +383,8 @@
             </div>
           </div>
           <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20o%20meu%20projeto." target="_blank" rel="noopener noreferrer" class="cosmic-btn-pill px-5 py-2.5 rounded-xl text-xs font-bold text-white inline-flex items-center gap-2 shrink-0">
-            <span>Conversar Agora</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            <span>Chamar no WhatsApp</span>
           </a>
         </div>
 
@@ -489,7 +516,7 @@
         <div class="flex items-center mb-6">
           <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20a%20apresenta%C3%A7%C3%A3o%203D%20na%20JS%20Web%20%26%20Business%20e%20quero%20o%20meu%20site%20aqui." target="_blank" rel="noopener noreferrer" class="btn-glow-whatsapp px-7 py-3.5 rounded-xl text-slate-950 font-extrabold text-sm sm:text-base inline-flex items-center gap-2.5 shadow-2xl">
             <i data-lucide="message-circle" class="w-5 h-5 fill-slate-950 stroke-none"></i>
-            <span>Falar no WhatsApp com Jhones Santana (11 95453-2927)</span>
+            <span>Chamar no WhatsApp</span>
           </a>
         </div>
 
@@ -535,23 +562,23 @@
   </footer>
 
   <!-- ========================================================================
-       BOTÃO FLUTUANTE DE WHATSAPP COM STATUS ONLINE
+       BOTÃO FLUTUANTE DE WHATSAPP COM STATUS ONLINE DINÂMICO
        ======================================================================== -->
   <div id="floating-whatsapp" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 transition-all duration-300">
     <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Business%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full glass-panel border border-emerald-500/30 text-xs font-semibold text-slate-200 shadow-xl hover:border-emerald-400 transition-all">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span>Jhones Santana • Online no WhatsApp</span>
+      <span id="wa-status-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span id="wa-status-text">Online no WhatsApp</span>
     </a>
 
-    <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Business%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp com Jhones Santana" class="btn-glow-whatsapp w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+    <a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Business%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener noreferrer" aria-label="Chamar no WhatsApp" class="btn-glow-whatsapp w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
       <i data-lucide="message-circle" class="w-7 h-7 fill-slate-950 stroke-none"></i>
     </a>
   </div>
 
-  <!-- Scripts da Aplicação -->
-  <script src="js/projects-data.js"></script>
-  <script src="js/three-scene.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Scripts da Aplicação com Defer para Máxima Velocidade & PageSpeed -->
+  <script defer src="js/projects-data.js"></script>
+  <script defer src="js/three-scene.js"></script>
+  <script defer src="js/main.js"></script>
 
 </body>
 </html>

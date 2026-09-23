@@ -39,7 +39,7 @@ export default function Hero() {
                   className="btn-glow-cyan px-7 py-3.5 rounded-xl text-slate-950 font-extrabold text-sm inline-flex items-center justify-center gap-2.5 shadow-xl"
                 >
                   <Zap className="w-4 h-4 fill-slate-950" />
-                  <span>Iniciar Projeto no WhatsApp</span>
+                  <span>Chamar no WhatsApp</span>
                 </a>
 
                 <a

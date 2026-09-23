@@ -163,7 +163,7 @@ Gostaria de uma proposta formal para este escopo.`;
               className="btn-glow-whatsapp px-6 py-3.5 rounded-xl text-xs sm:text-sm font-extrabold flex items-center gap-2.5 w-full sm:w-auto justify-center shrink-0 shadow-lg"
             >
               <Send className="w-4 h-4" />
-              <span>Pedir Proposta Deste Escopo no WhatsApp</span>
+              <span>Chamar no WhatsApp</span>
             </a>
           </div>
 

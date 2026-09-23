@@ -112,7 +112,7 @@ export default function Services() {
                     rel="noopener noreferrer"
                     className={`text-xs font-bold flex items-center gap-1 group mt-2 ${service.ctaColor}`}
                   >
-                    <span>{service.ctaText}</span>
+                    <span>Chamar no WhatsApp</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </div>

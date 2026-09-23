@@ -33,6 +33,9 @@ function initApp() {
   // 8. Atualizar Ano no Rodapé e Dados Globais
   setupFooterAndGlobalLinks();
 
+  // 8.5. Status Dinâmico do WhatsApp (08h às 22h Online / Fora disso Offline)
+  setupWhatsAppScheduleStatus();
+
   // 9. Toggle Interativo do Bento Grid
   setupUltraModeToggle();
 }
@@ -583,6 +586,44 @@ function setupFooterAndGlobalLinks() {
   waLinks.forEach(el => {
     el.href = `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent("Olá Jhones! Visitei o site da JS Web & Business e gostaria de conversar sobre um projeto.")}`;
   });
+}
+
+/* ==========================================================================
+   8.5. Status Dinâmico do WhatsApp (08h às 22h Online / Fora disso Offline)
+   ========================================================================== */
+function setupWhatsAppScheduleStatus() {
+  function checkStatus() {
+    const statusText = document.getElementById("wa-status-text");
+    const statusDot = document.getElementById("wa-status-dot");
+    if (!statusText || !statusDot) return;
+
+    try {
+      const options = { timeZone: "America/Sao_Paulo", hour: "numeric", hour12: false };
+      const currentHour = parseInt(new Intl.DateTimeFormat([], options).format(new Date()), 10);
+      const isOnline = currentHour >= 8 && currentHour < 22;
+
+      if (isOnline) {
+        statusText.textContent = "Online no WhatsApp";
+        statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+      } else {
+        statusText.textContent = "Offline no WhatsApp";
+        statusDot.className = "w-2 h-2 rounded-full bg-slate-500";
+      }
+    } catch (e) {
+      const localHour = new Date().getHours();
+      const isOnline = localHour >= 8 && localHour < 22;
+      if (isOnline) {
+        statusText.textContent = "Online no WhatsApp";
+        statusDot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+      } else {
+        statusText.textContent = "Offline no WhatsApp";
+        statusDot.className = "w-2 h-2 rounded-full bg-slate-500";
+      }
+    }
+  }
+
+  checkStatus();
+  setInterval(checkStatus, 30000);
 }
 
 /* ==========================================================================
