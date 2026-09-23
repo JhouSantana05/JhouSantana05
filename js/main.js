@@ -3,11 +3,14 @@
  * Interface Moderna, 3D Card Tilt, Projetos Reais (@JhouSantana05) e Simulador de Negócios
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+function initApp() {
   // 1. Inicializar Ícones Lucide
   if (typeof lucide !== "undefined") {
     lucide.createIcons();
   }
+
+  // 1.5. Canvas de Sequência Cinematográfica de Scroll (40 frames)
+  setupScrollSequenceCanvas();
 
   // 2. Menu Mobile
   setupMobileMenu();
@@ -29,7 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 8. Atualizar Ano no Rodapé e Dados Globais
   setupFooterAndGlobalLinks();
-});
+
+  // 9. Toggle Interativo do Bento Grid
+  setupUltraModeToggle();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}
 
 /* ==========================================================================
    1. Menu Mobile
@@ -103,7 +115,7 @@ function getProjectVisual(project) {
     `;
   }
 
-  // Caso 2: Cartão de Visita Digital (com a foto real do Jhones Sandro)
+  // Caso 2: Cartão de Visita Digital (com a foto real do Jhones Santana)
   if (project.mockupType === "cartao-visita") {
     return `
       <div class="mockup-preview-window w-full h-52 bg-slate-950 flex flex-col relative overflow-hidden">
@@ -113,14 +125,14 @@ function getProjectVisual(project) {
             <span class="mockup-dot bg-amber-500"></span>
             <span class="mockup-dot bg-emerald-500"></span>
           </div>
-          <span class="text-[11px] font-mono text-indigo-300">jhones-sandro.vercel.app</span>
+          <span class="text-[11px] font-mono text-indigo-300">jhones-santana.vercel.app</span>
           <div class="w-8"></div>
         </div>
         <div class="p-4 flex-1 flex items-center justify-center gap-4 bg-gradient-to-br from-slate-900 to-indigo-950/40">
           <div class="relative shrink-0">
             <img 
               src="${project.image}" 
-              alt="Jhones Sandro - Foto Oficial" 
+              alt="Jhones Santana - Foto Oficial" 
               class="w-20 h-20 rounded-full object-cover border-2 border-indigo-400/80 shadow-lg shadow-indigo-500/20"
               loading="lazy"
             >
@@ -128,7 +140,7 @@ function getProjectVisual(project) {
           </div>
           <div class="flex flex-col text-left">
             <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">JS Web & Business</span>
-            <h4 class="text-sm font-bold text-white leading-tight">Jhones Sandro</h4>
+            <h4 class="text-sm font-bold text-white leading-tight">Jhones Santana</h4>
             <p class="text-[11px] text-slate-300 mt-1">Soluções Comerciais & Digitais</p>
             <span class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
               <i data-lucide="check-circle" class="w-3 h-3"></i> Atendimento Rápido
@@ -436,8 +448,8 @@ function setupScopeCalculator() {
     summaryScopeEl.textContent = selectedType.name;
     summaryTimeEl.textContent = `Estimativa de Entrega: ${selectedType.baseDays}`;
 
-    // Montar mensagem para o WhatsApp com Jhones Sandro
-    let messageText = `Olá Jhones Sandro! Estive no site da *JS Web & Business* e montei a seguinte prévia de projeto:\n\n`;
+    // Montar mensagem para o WhatsApp com Jhones Santana
+    let messageText = `Olá Jhones Santana! Estive no site da *JS Web & Business* e montei a seguinte prévia de projeto:\n\n`;
     messageText += `📌 *Tipo de Projeto:* ${selectedType.name}\n`;
     messageText += `⚡ *Prazo Estimado:* ${selectedType.baseDays}\n`;
     
@@ -572,3 +584,169 @@ function setupFooterAndGlobalLinks() {
     el.href = `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent("Olá Jhones! Visitei o site da JS Web & Business e gostaria de conversar sobre um projeto.")}`;
   });
 }
+
+/* ==========================================================================
+   Canvas de Sequência de Frames 1 a 40 Controlado pelo Scroll Global
+   ========================================================================== */
+function setupScrollSequenceCanvas() {
+  const bgCanvas = document.getElementById("scroll-sequence-canvas");
+  if (!bgCanvas) return;
+
+  const bgCtx = bgCanvas.getContext("2d");
+  if (!bgCtx) return;
+
+  const TOTAL_FRAMES = 40;
+  const images = [];
+  const state = {
+    currentFrame: 0,
+    targetFrame: 0,
+    animId: 0,
+    isLoaded: false
+  };
+
+  // Preload progressivo dos 40 frames
+  for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    const img = new Image();
+    const frameNum = String(i).padStart(3, "0");
+    img.src = `imagens/ezgif-frame-${frameNum}.png`;
+    img.onerror = () => {
+      img.src = `public/imagens/ezgif-frame-${frameNum}.png`;
+    };
+    img.onload = () => {
+      if (i === 1 && !state.isLoaded) {
+        state.isLoaded = true;
+        drawFrame(0);
+      }
+    };
+    images.push(img);
+  }
+
+  // Redimensionamento de alta resolução (Retina / DPR)
+  function handleResize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    bgCanvas.width = window.innerWidth * dpr;
+    bgCanvas.height = window.innerHeight * dpr;
+    drawFrame(Math.round(state.currentFrame));
+  }
+
+  // Mapeamento contínuo: a animação dos 40 frames termina exatamente junto com o scroll total da página
+  function handleScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) return;
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    
+    state.targetFrame = progress * (TOTAL_FRAMES - 1);
+
+    // No final da tela (seção de fechamento), oculta header, footer e botão flutuante
+    // para exibir SOMENTE as 2 partes: o personagem 3D com o notebook e o card na esquerda (marcador 2)
+    const header = document.getElementById("main-header");
+    const floatingWa = document.getElementById("floating-whatsapp");
+    const footer = document.getElementById("main-footer");
+
+    if (progress > 0.88) {
+      if (header) {
+        header.classList.add("opacity-0", "pointer-events-none", "-translate-y-full");
+      }
+      if (floatingWa) {
+        floatingWa.classList.add("opacity-0", "pointer-events-none");
+      }
+      if (footer) {
+        footer.classList.add("opacity-0", "pointer-events-none");
+      }
+    } else {
+      if (header) {
+        header.classList.remove("opacity-0", "pointer-events-none", "-translate-y-full");
+      }
+      if (floatingWa) {
+        floatingWa.classList.remove("opacity-0", "pointer-events-none");
+      }
+      if (footer) {
+        footer.classList.remove("opacity-0", "pointer-events-none");
+      }
+    }
+  }
+
+  // Renderização precisa no Canvas de Fundo
+  function drawFrame(frameIndex) {
+    const img = images[frameIndex];
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+
+    bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+    const hRatio = bgCanvas.width / img.naturalWidth;
+    const vRatio = bgCanvas.height / img.naturalHeight;
+    const ratio = Math.max(hRatio, vRatio);
+
+    const drawWidth = img.naturalWidth * ratio;
+    const drawHeight = img.naturalHeight * ratio;
+
+    // No desktop e widescreen, garante que o personagem (lado direito) e a tela do laptop fiquem sempre em destaque
+    let shiftX = (bgCanvas.width - drawWidth) * 0.6;
+    if (window.innerWidth < 1024) {
+      shiftX = (bgCanvas.width - drawWidth) * 0.75;
+    }
+    const shiftY = (bgCanvas.height - drawHeight) / 2;
+
+    bgCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, shiftX, shiftY, drawWidth, drawHeight);
+  }
+
+  // Loop persistente de interpolação suave e ágil (lerp 0.35) para reação imediata
+  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let lastRenderedFrame = -1;
+
+  function renderLoop() {
+    if (mediaQuery.matches) {
+      state.currentFrame = state.targetFrame;
+    } else {
+      // Reação rápida ao scroll: responde instantaneamente sem atraso excessivo
+      const diff = state.targetFrame - state.currentFrame;
+      if (Math.abs(diff) < 0.005) {
+        state.currentFrame = state.targetFrame;
+      } else {
+        state.currentFrame += diff * 0.35;
+      }
+    }
+
+    const frameToDraw = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(state.currentFrame)));
+
+    if (frameToDraw !== lastRenderedFrame) {
+      drawFrame(frameToDraw);
+      lastRenderedFrame = frameToDraw;
+    }
+
+    state.animId = requestAnimationFrame(renderLoop);
+  }
+
+  handleResize();
+  handleScroll();
+  renderLoop();
+
+  window.addEventListener("resize", handleResize, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
+}
+
+/* ==========================================================================
+   9. Toggle Interativo do Bento Grid
+   ========================================================================== */
+function setupUltraModeToggle() {
+  const toggleBtn = document.getElementById("ultra-mode-toggle");
+  const modeLabel = document.getElementById("ultra-mode-label");
+  if (!toggleBtn || !modeLabel) return;
+
+  let isUltra = true;
+
+  toggleBtn.addEventListener("click", () => {
+    isUltra = !isUltra;
+    if (isUltra) {
+      modeLabel.textContent = "Modo Alta Conversão";
+      toggleBtn.classList.remove("justify-start", "bg-slate-800", "border-slate-700");
+      toggleBtn.classList.add("justify-end", "bg-purple-950", "border-purple-500/50");
+    } else {
+      modeLabel.textContent = "Modo Padrão";
+      toggleBtn.classList.remove("justify-end", "bg-purple-950", "border-purple-500/50");
+      toggleBtn.classList.add("justify-start", "bg-slate-800", "border-slate-700");
+    }
+  });
+}
+
+

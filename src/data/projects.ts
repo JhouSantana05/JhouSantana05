@@ -1,8 +1,6 @@
-/**
- * JS Web & Business - Banco de Dados de Projetos Reais do GitHub (@JhouSantana05)
- * Todos os projetos e fotos aqui são reais, extraídos diretamente dos repositórios.
- */
-const COMPANY_CONFIG = {
+import { CompanyConfig, Project } from '@/types';
+
+export const COMPANY_CONFIG: CompanyConfig = {
   name: "JS Web & Business",
   founder: "Jhones Santana",
   photoUrl: "https://raw.githubusercontent.com/JhouSantana05/cartao-visita/main/1000904715.jpg",
@@ -15,7 +13,7 @@ const COMPANY_CONFIG = {
   availability: "Disponível para novos projetos"
 };
 
-const portfolioProjects = [
+export const PORTFOLIO_PROJECTS: Project[] = [
   {
     id: "branch-clo",
     title: "Branch Clo - Catálogo & Loja Streetwear",
@@ -29,7 +27,6 @@ const portfolioProjects = [
     featured: true,
     badge: "Next.js & Prisma",
     image: "https://raw.githubusercontent.com/JhouSantana05/branch-clo/master/Roupas/WhatsApp%20Image%202026-09-17%20at%2022.02.38%20(1).jpeg",
-    logoImage: "https://raw.githubusercontent.com/JhouSantana05/branch-clo/master/Logos/WhatsApp%20Image%202026-09-17%20at%2022.06.33.jpeg",
     mockupType: "branch"
   },
   {
@@ -98,10 +95,10 @@ const portfolioProjects = [
     category: "ecommerce",
     categoryName: "Cardápio & Delivery",
     description: "Cardápio online moderno para restaurantes, lanchonetes e confeitarias. O cliente visualiza fotos dos pratos, adiciona adicionais, monta a sacola e o pedido chega mastigado no WhatsApp da cozinha.",
-    impact: "Sem cobrança de porcentagem sobre as vendas (ao contrário de apps tradicionais de delivery).",
+    impact: "Facilidade de pedido para o consumidor e zero comissões cobradas por apps terceiros.",
     technologies: ["JavaScript", "TailwindCSS", "HTML5", "Carrinho Dinâmico"],
     githubUrl: "https://github.com/JhouSantana05/cartao-visita/tree/main/demos/cardapio",
-    demoUrl: "https://wa.me/5511954532927?text=Olá%20Jhones!%20Gostaria%20de%20um%20Cardápio%20Digital%20para%20meu%20restaurante/lanchonete.",
+    demoUrl: "https://wa.me/5511954532927?text=Olá%20Jhones!%20Gostaria%20de%20um%20cardápio%20digital%20com%20carrinho%20para%20WhatsApp.",
     featured: false,
     badge: "Delivery Direto",
     image: null,
