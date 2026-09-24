@@ -23,19 +23,46 @@ export default function ScrollCanvas() {
     let isSubscribed = true;
     const images: HTMLImageElement[] = [];
 
-    // Preload progressivo dos 40 frames
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
-      const img = new Image();
-      const frameNum = String(i).padStart(3, '0');
-      img.src = `/imagens/ezgif-frame-${frameNum}.png`;
-      img.onload = () => {
+    // Carregamento ultrarrápido: Frame 1 é exibido de imediato em WebP (~32KB)
+    const firstFrame = new Image();
+    firstFrame.decoding = 'async';
+    firstFrame.src = '/imagens/ezgif-frame-001.webp';
+    firstFrame.onerror = () => {
+      firstFrame.src = '/imagens/ezgif-frame-001.png';
+    };
+    firstFrame.onload = () => {
+      if (!isSubscribed) return;
+      stateRef.current.isLoaded = true;
+      drawFrame(0);
+      loadRemainingFrames();
+    };
+    images[0] = firstFrame;
+
+    function loadRemainingFrames() {
+      let index = 2;
+      function loadNextBatch() {
         if (!isSubscribed) return;
-        if (i === 1 && !stateRef.current.isLoaded) {
-          stateRef.current.isLoaded = true;
-          drawFrame(0);
+        const batchEnd = Math.min(index + 3, TOTAL_FRAMES);
+        for (; index <= batchEnd; index++) {
+          const i = index;
+          const img = new Image();
+          img.decoding = 'async';
+          const frameNum = String(i).padStart(3, '0');
+          img.src = `/imagens/ezgif-frame-${frameNum}.webp`;
+          img.onerror = () => {
+            img.src = `/imagens/ezgif-frame-${frameNum}.png`;
+          };
+          images[i - 1] = img;
         }
-      };
-      images.push(img);
+        if (index <= TOTAL_FRAMES) {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadNextBatch, { timeout: 150 });
+          } else {
+            setTimeout(loadNextBatch, 30);
+          }
+        }
+      }
+      loadNextBatch();
     }
     imagesRef.current = images;
 

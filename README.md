@@ -1,6 +1,8 @@
 <div align="center">
 
-# ⚡ JS Web & Business
+<img src="imagens/logo-dark.png" alt="JS Web & Negócios" width="440" />
+
+# ⚡ JS Web & Negócios
 ### Jhones Sandro • Desenvolvedor Web & Automação de Negócios
 
 <p align="center">
@@ -24,7 +26,7 @@
 
 </div>
 
-## ⚡ Conheça a JS Web & Business
+## ⚡ Conheça a JS Web & Negócios
 
 > *"Transformo rotinas manuais, planilhas lentas e ideias de negócio em interfaces interativas de alto impacto e sistemas operacionais sem retrabalho."*
 
@@ -53,7 +55,7 @@
 
 | Projeto & Preview | Descrição / Solução | Stack Principal | Status |
 | :--- | :--- | :--- | :---: |
-| 🌐 **[JS Web & Business](https://jhou-santana05.vercel.app/)** | **Landing Page Oficial 3D** com globo holográfico interativo em Three.js, simulador de escopo e gerador de leads para WhatsApp. | `HTML5` `Tailwind` `Three.js` | 🟢 Em Produção |
+| 🌐 **[JS Web & Negócios](https://jhou-santana05.vercel.app/)** | **Landing Page Oficial 3D** com globo holográfico interativo em Three.js, simulador de escopo e gerador de leads para WhatsApp. | `HTML5` `Tailwind` `Three.js` | 🟢 Em Produção |
 | 👕 **Branch Clo** | **Catálogo e E-commerce Streetwear** com galeria de produtos, arquitetura escalável e catálogo interativo. | `Next.js` `TypeScript` `Prisma` | 🟢 Ativo |
 | 💰 **Gestão Financeira Pro** | **Dashboard Corporativo (Meta 30k)** com gráficos dinâmicos de fluxo de caixa, despesas e auditoria. | `Chart.js` `JavaScript` `Glassmorphism` | 🟢 Ativo |
 | 📱 **Favela Chic** | **PWA & Catálogo Mobile-First** com captura de câmera em tempo real para cadastro rápido de roupas. | `PWA` `Webcam API` `Tailwind` | 🟢 Ativo |
@@ -85,6 +87,6 @@ Seja para colocar sua empresa no mapa com uma landing page moderna ou construir 
 
 <br/><br/>
 
-<sub>© JS Web & Business • Desenvolvido com foco em resultados reais por Jhones Sandro (@JhouSantana05)</sub>
+<sub>© JS Web & Negócios • Desenvolvido com foco em resultados reais por Jhones Sandro (@JhouSantana05)</sub>
 
 </div>

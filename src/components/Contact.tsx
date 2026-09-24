@@ -29,7 +29,7 @@ export default function Contact() {
           {/* CTA Principal WhatsApp */}
           <div className="flex items-center mb-6">
             <a
-              href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20a%20apresenta%C3%A7%C3%A3o%203D%20na%20JS%20Web%20%26%20Business%20e%20quero%20o%20meu%20site%20aqui."
+              href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20a%20apresenta%C3%A7%C3%A3o%203D%20na%20JS%20Web%20%26%20Neg%C3%B3cios%20e%20quero%20o%20meu%20site%20aqui."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-glow-whatsapp px-7 py-3.5 rounded-xl text-slate-950 font-extrabold text-sm sm:text-base inline-flex items-center gap-2.5 shadow-2xl"

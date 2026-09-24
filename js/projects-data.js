@@ -1,9 +1,9 @@
 /**
- * JS Web & Business - Banco de Dados de Projetos Reais do GitHub (@JhouSantana05)
+ * JS Web & Negócios - Banco de Dados de Projetos Reais do GitHub (@JhouSantana05)
  * Todos os projetos e fotos aqui são reais, extraídos diretamente dos repositórios.
  */
 const COMPANY_CONFIG = {
-  name: "JS Web & Business",
+  name: "JS Web & Negócios",
   founder: "Jhones Santana",
   photoUrl: "https://raw.githubusercontent.com/JhouSantana05/cartao-visita/main/1000904715.jpg",
   tagline: "Desenvolvimento de Sites de Alta Conversão, Catálogos & Sistemas Web",

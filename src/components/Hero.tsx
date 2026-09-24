@@ -33,7 +33,7 @@ export default function Hero() {
               {/* Ações Rápidas */}
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mb-8">
                 <a
-                  href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Quero%20iniciar%20um%20projeto%20com%20a%20JS%20Web%20%26%20Business."
+                  href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Quero%20iniciar%20um%20projeto%20com%20a%20JS%20Web%20%26%20Neg%C3%B3cios."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-glow-cyan px-7 py-3.5 rounded-xl text-slate-950 font-extrabold text-sm inline-flex items-center justify-center gap-2.5 shadow-xl"

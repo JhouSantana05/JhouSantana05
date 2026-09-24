@@ -26,7 +26,7 @@ export default function FloatingWhatsApp() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
       <a
-        href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Business%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
+        href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Neg%C3%B3cios%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
         target="_blank"
         rel="noopener noreferrer"
         className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full glass-panel border border-emerald-500/30 text-xs font-semibold text-slate-200 shadow-xl hover:border-emerald-400 transition-all"
@@ -40,7 +40,7 @@ export default function FloatingWhatsApp() {
       </a>
 
       <a
-        href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Business%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
+        href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20site%20da%20JS%20Web%20%26%20Neg%C3%B3cios%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chamar no WhatsApp"

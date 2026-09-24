@@ -1,7 +1,7 @@
 import { CompanyConfig, Project } from '@/types';
 
 export const COMPANY_CONFIG: CompanyConfig = {
-  name: "JS Web & Business",
+  name: "JS Web & Negócios",
   founder: "Jhones Santana",
   photoUrl: "https://raw.githubusercontent.com/JhouSantana05/cartao-visita/main/1000904715.jpg",
   tagline: "Desenvolvimento de Sites de Alta Conversão, Catálogos & Sistemas Web",

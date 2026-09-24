@@ -142,7 +142,7 @@ function getProjectVisual(project) {
             <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-slate-950 rounded-full"></span>
           </div>
           <div class="flex flex-col text-left">
-            <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">JS Web & Business</span>
+            <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">JS Web & Negócios</span>
             <h4 class="text-sm font-bold text-white leading-tight">Jhones Santana</h4>
             <p class="text-[11px] text-slate-300 mt-1">Soluções Comerciais & Digitais</p>
             <span class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
@@ -352,7 +352,7 @@ function setupProjectsFilter() {
               <i data-lucide="github" class="w-4 h-4"></i> Ver no GitHub
             </a>
             
-            <a href="https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(`Olá Jhones! Vi o projeto *${project.title}* no portfólio da JS Web & Business e gostaria de um orçamento para criar um projeto similar para minha empresa.`)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-md shadow-cyan-500/20">
+            <a href="https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(`Olá Jhones! Vi o projeto *${project.title}* no portfólio da JS Web & Negócios e gostaria de um orçamento para criar um projeto similar para minha empresa.`)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-md shadow-cyan-500/20">
               Quero um Igual <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
           </div>
@@ -452,7 +452,7 @@ function setupScopeCalculator() {
     summaryTimeEl.textContent = `Estimativa de Entrega: ${selectedType.baseDays}`;
 
     // Montar mensagem para o WhatsApp com Jhones Santana
-    let messageText = `Olá Jhones Santana! Estive no site da *JS Web & Business* e montei a seguinte prévia de projeto:\n\n`;
+    let messageText = `Olá Jhones Santana! Estive no site da *JS Web & Negócios* e montei a seguinte prévia de projeto:\n\n`;
     messageText += `📌 *Tipo de Projeto:* ${selectedType.name}\n`;
     messageText += `⚡ *Prazo Estimado:* ${selectedType.baseDays}\n`;
     
@@ -555,7 +555,7 @@ function setupContactForm() {
     if (message) {
       fullMsg += `📝 Detalhes: ${message}\n`;
     }
-    fullMsg += `\nGostaria de solicitar uma proposta da JS Web & Business.`;
+    fullMsg += `\nGostaria de solicitar uma proposta da JS Web & Negócios.`;
 
     const waLink = `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(fullMsg)}`;
 
@@ -584,7 +584,7 @@ function setupFooterAndGlobalLinks() {
 
   const waLinks = document.querySelectorAll("[data-company-wa-link]");
   waLinks.forEach(el => {
-    el.href = `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent("Olá Jhones! Visitei o site da JS Web & Business e gostaria de conversar sobre um projeto.")}`;
+    el.href = `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent("Olá Jhones! Visitei o site da JS Web & Negócios e gostaria de conversar sobre um projeto.")}`;
   });
 }
 
@@ -645,21 +645,46 @@ function setupScrollSequenceCanvas() {
     isLoaded: false
   };
 
-  // Preload progressivo dos 40 frames
-  for (let i = 1; i <= TOTAL_FRAMES; i++) {
-    const img = new Image();
-    const frameNum = String(i).padStart(3, "0");
-    img.src = `imagens/ezgif-frame-${frameNum}.png`;
-    img.onerror = () => {
-      img.src = `public/imagens/ezgif-frame-${frameNum}.png`;
-    };
-    img.onload = () => {
-      if (i === 1 && !state.isLoaded) {
-        state.isLoaded = true;
-        drawFrame(0);
+  // Carregamento ultrarrápido: Frame 1 é renderizado de imediato com WebP leve (~32KB)
+  const firstFrame = new Image();
+  firstFrame.decoding = "async";
+  firstFrame.src = "imagens/ezgif-frame-001.webp";
+  firstFrame.onerror = () => {
+    firstFrame.src = "imagens/ezgif-frame-001.png";
+  };
+  firstFrame.onload = () => {
+    state.isLoaded = true;
+    drawFrame(0);
+    // Inicia carregamento dos demais frames em background sem bloquear a renderização inicial
+    loadRemainingFrames();
+  };
+  images[0] = firstFrame;
+
+  // Carrega os demais frames em segundo plano de forma progressiva
+  function loadRemainingFrames() {
+    let index = 2;
+    function loadNextBatch() {
+      const batchEnd = Math.min(index + 3, TOTAL_FRAMES);
+      for (; index <= batchEnd; index++) {
+        const i = index;
+        const img = new Image();
+        img.decoding = "async";
+        const frameNum = String(i).padStart(3, "0");
+        img.src = `imagens/ezgif-frame-${frameNum}.webp`;
+        img.onerror = () => {
+          img.src = `imagens/ezgif-frame-${frameNum}.png`;
+        };
+        images[i - 1] = img;
       }
-    };
-    images.push(img);
+      if (index <= TOTAL_FRAMES) {
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(loadNextBatch, { timeout: 150 });
+        } else {
+          setTimeout(loadNextBatch, 30);
+        }
+      }
+    }
+    loadNextBatch();
   }
 
   // Redimensionamento de alta resolução (Retina / DPR)

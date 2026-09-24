@@ -8,7 +8,8 @@ export default function Footer() {
     <footer className="bg-slate-950/40 backdrop-blur-md border-t border-white/10 py-6 relative z-10 text-center">
       <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-mono">
         <div className="flex items-center gap-2">
-          <span className="font-bold text-white">JS Web & Business</span>
+          <img src="/imagens/logo-icon.png" alt="JS Web & Negócios" className="w-5 h-5 object-contain" />
+          <span className="font-bold text-white">JS Web & Negócios</span>
           <span>•</span>
           <span>Jhones Santana</span>
           <span>•</span>

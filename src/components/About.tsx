@@ -39,7 +39,7 @@ export default function About() {
                 Desenvolvedor & Fundador
               </span>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
-                Jhones Santana • JS Web & Business
+                Jhones Santana • JS Web & Negócios
               </h3>
               <p className="text-xs font-semibold text-emerald-400 font-mono mb-4 flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5" />
@@ -50,7 +50,7 @@ export default function About() {
               </p>
               <div className="flex flex-wrap gap-3 mt-2">
                 <a
-                  href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20perfil%20na%20JS%20Web%20%26%20Business%20e%20gostaria%20de%20conversar."
+                  href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones!%20Vi%20seu%20perfil%20na%20JS%20Web%20%26%20Neg%C3%B3cios%20e%20gostaria%20de%20conversar."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-glow-whatsapp px-5 py-2.5 rounded-xl text-xs font-bold inline-flex items-center gap-2"

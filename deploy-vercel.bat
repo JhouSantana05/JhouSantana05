@@ -5,7 +5,7 @@ chcp 65001 > nul
 cd /d "%~dp0"
 
 echo =========================================================
-echo    JS Web & Business - Publicar na Vercel (Producao)
+echo    JS Web & Negócios - Publicar na Vercel (Producao)
 echo =========================================================
 echo.
 echo Pasta atual: %CD%
