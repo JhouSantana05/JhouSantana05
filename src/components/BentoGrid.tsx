@@ -61,7 +61,7 @@ export default function BentoGrid() {
                 Estrutura pensada para engajar o visitante e guiar diretamente para o WhatsApp.
               </p>
               <div className="pt-2 flex items-center gap-2 text-[11px] font-mono text-emerald-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> 99.9% Uptime & Carregamento Instantâneo
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Alta Disponibilidade & Carregamento Fluido
               </div>
             </div>
 
@@ -76,31 +76,31 @@ export default function BentoGrid() {
             </div>
           </div>
 
-          {/* Card 3: Performance 100% */}
+          {/* Card 3: Performance Otimizada */}
           <div className="cosmic-card rounded-2xl p-5 flex flex-col justify-between">
             <div className="space-y-2">
               <div className="w-9 h-9 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-400">
                 <Gauge className="w-4 h-4" />
               </div>
-              <h3 className="text-base font-bold text-white">Performance 100%</h3>
-              <p className="text-xs text-slate-300">Nota 99+ no Google PageSpeed sem lentidão no 4G.</p>
+              <h3 className="text-base font-bold text-white">Performance Otimizada</h3>
+              <p className="text-xs text-slate-300">Carregamento rápido e fluido, otimizado para abrir sem travar no 4G.</p>
             </div>
             <div className="pt-3 border-t border-white/5 mt-3">
               <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Ultra Rápido
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Navegação Leve
               </span>
             </div>
           </div>
 
-          {/* Card 4: Métricas & Prova */}
+          {/* Card 4: Soluções Sob Medida */}
           <div className="cosmic-card rounded-2xl p-5 flex flex-col justify-between">
             <div>
-              <div className="text-3xl font-extrabold text-white mb-1">+150k</div>
-              <p className="text-xs text-slate-300 mb-2">usuários impactados pelos nossos sistemas</p>
+              <div className="text-xl sm:text-2xl font-extrabold text-white mb-1">Sob Medida</div>
+              <p className="text-xs text-slate-300 mb-2">Projetos desenvolvidos para resolver os gargalos reais do seu negócio.</p>
             </div>
             <div className="pt-3 border-t border-white/5">
               <span className="text-[11px] font-mono text-cyan-300 flex items-center gap-1">
-                <CheckCircle className="w-3.5 h-3.5 text-cyan-400" /> Validação Comprovada
+                <CheckCircle className="w-3.5 h-3.5 text-cyan-400" /> Foco no Seu Negócio
               </span>
             </div>
           </div>

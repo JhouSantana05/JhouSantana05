@@ -50,7 +50,7 @@ export default function Projects() {
             </div>
             <div className="p-4">
               <h3 className="text-sm font-bold text-white mb-1">Branch Clo • Streetwear</h3>
-              <p className="text-xs text-slate-300 mb-3">E-commerce de moda com vitrine e checkout no WhatsApp.</p>
+              <p className="text-xs text-slate-300 mb-3">Loja virtual para marca de streetwear, com catálogo de produtos e direcionamento do cliente para atendimento e fechamento pelo WhatsApp.</p>
               <a
                 href="https://github.com/JhouSantana05/branch-clo"
                 target="_blank"
@@ -85,7 +85,7 @@ export default function Projects() {
             </div>
             <div className="p-4">
               <h3 className="text-sm font-bold text-white mb-1">Cartão de Visita Digital</h3>
-              <p className="text-xs text-slate-300 mb-3">Página de conversão com links, QR Code e Pix integrado.</p>
+              <p className="text-xs text-slate-300 mb-3">Página profissional para prestadores de serviços, centralizando apresentação comercial, canais de contato e chave Pix em um só lugar.</p>
               <a
                 href="https://github.com/JhouSantana05/cartao-visita"
                 target="_blank"
@@ -107,14 +107,14 @@ export default function Projects() {
               <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mb-1.5">
                 <div className="w-3/4 h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full" />
               </div>
-              <span className="text-[10px] text-slate-400 font-mono">75% Concluído • Tempo Real</span>
+              <span className="text-[10px] text-slate-400 font-mono">Simulação de Metas • Tempo Real</span>
               <span className="absolute bottom-2 left-3 text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
                 Dashboard Web
               </span>
             </div>
             <div className="p-4">
               <h3 className="text-sm font-bold text-white mb-1">Gestão Financeira Pro</h3>
-              <p className="text-xs text-slate-300 mb-3">Painel analítico para controle de metas, despesas e fluxo de caixa.</p>
+              <p className="text-xs text-slate-300 mb-3">Sistema web para gestão financeira interna de pequenos negócios, organizando entradas, despesas operacionais e metas de fluxo de caixa.</p>
               <a
                 href="https://github.com/JhouSantana05/Gest-o-30k"
                 target="_blank"

@@ -49,7 +49,7 @@ export default function Simulator() {
     .filter((f) => selectedFeatures.includes(f.id))
     .map((f) => f.name);
 
-  const whatsappMessage = `Olá Jhones! Fiz uma simulação de projeto no site da JS Web & Business:
+  const whatsappMessage = `Olá Jhones! Fiz uma simulação de projeto no site da JS Web & Negócios:
 
 📌 *Tipo de Projeto:* ${currentType.name}
 ⏱️ *Prazo Estimado:* ${currentType.days}

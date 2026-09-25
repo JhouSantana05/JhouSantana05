@@ -51,15 +51,15 @@ export default function Hero() {
                 </a>
               </div>
 
-              {/* 3 Micro Métricas */}
+              {/* 3 Micro Métricas / Pilares */}
               <div className="flex items-center gap-6 pt-4 border-t border-white/10 text-xs font-mono text-slate-400">
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                  <span><strong className="text-white">100%</strong> Mobile First</span>
+                  <span><strong className="text-white">Design</strong> Responsivo</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span><strong className="text-white">&lt; 1.0s</strong> Velocidade</span>
+                  <span><strong className="text-white">Alta</strong> Performance</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
