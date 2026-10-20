@@ -1,0 +1,38 @@
+name: Publicar JS Web & Sistemas - Locaweb
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site-jswebsis/**'
+      - '.github/workflows/publicar-jswebsis.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: deploy-jswebsis
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar site antes do envio
+        shell: bash
+        run: |
+          test -s site-jswebsis/index.html
+          test -s site-jswebsis/robots.txt
+          test -s site-jswebsis/sitemap.xml
+          ! grep -qi 'noindex' site-jswebsis/index.html
+          ! grep -qi 'contato@jswebsis.com.br' site-jswebsis/index.html
+          grep -q 'js-waas-maintenance-screen' site-jswebsis/index.html
+      - name: Publicar somente arquivos da JS via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./site-jswebsis/
+          server-dir: ./public_html/
+          dangerous-clean-slate: false
