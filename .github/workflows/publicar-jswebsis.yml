@@ -1,10 +1,6 @@
 name: Publicar JS Web & Sistemas - Locaweb
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'site-jswebsis/**'
-      - '.github/workflows/publicar-jswebsis.yml'
+  # Push desabilitado até hospedagem oferecer transferência criptografada.
   workflow_dispatch:
 permissions:
   contents: read
