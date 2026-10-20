@@ -28,7 +28,7 @@ jobs:
       - name: Publicar somente arquivos da JS via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ftp.jswebsis1.hospedagemdesites.ws
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
