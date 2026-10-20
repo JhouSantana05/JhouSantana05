@@ -210,55 +210,63 @@ rgba(4,27,36,.88) 52%,rgba(4,27,36,.42) 66%,rgba(4,27,36,.06) 83%,transparent 10
             
 </script>
 <script id="js-carousel-automatico">
-(()=>{
- const viewport=document.getElementById('carouselShell');
- const track=document.getElementById('carouselTrack');
- const previous=document.getElementById('prevCard');
- const next=document.getElementById('nextCard');
- if(!viewport||!track) return;
- const cards=Array.from(track.querySelectorAll('.serviceCard'));
- const dots=Array.from(document.querySelectorAll('#servicos .carouselDots span'));
- const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
- let timer=null,paused=false,focusInside=false;
- function step(){
-   if(cards.length===0)return 0;
-   const gap=parseFloat(getComputedStyle(track).columnGap)||0;
-   return cards[0].getBoundingClientRect().width+gap;
- }
- function index(){return step()>0?Math.round(viewport.scrollLeft/step()):0;}
- function updateDots(){
-   const at=Math.max(0,Math.min(cards.length-1,index()));
-   dots.forEach((d,i)=>d.classList.toggle('isActive',i===at%dots.length));
- }
- function advance(direction){
-   if(cards.length<2)return;
-   const max=viewport.scrollWidth-viewport.clientWidth;
-   if(max<2)return;
-   const nextPosition=Math.min(max,Math.max(0,viewport.scrollLeft+direction*step()));
-   const atBoundary=direction>0&&viewport.scrollLeft>=max-3;
-   const atStart=direction<0&&viewport.scrollLeft<=3;
-   viewport.scrollTo({left:atBoundary?0:(atStart?max:nextPosition),behavior:reduce.matches?'auto':'smooth'});
-   window.setTimeout(updateDots,650);
- }
- function stop(){if(timer!==null)clearInterval(timer);timer=null;}
- function start(){
-   stop();
-   if(reduce.matches||paused||focusInside||document.hidden||cards.length<2)return;
-   timer=window.setInterval(()=>advance(1),3600);
- }
- previous?.addEventListener('click',()=>{advance(-1);start()});
- next?.addEventListener('click',()=>{advance(1);start()});
- viewport.addEventListener('mouseenter',()=>{paused=true;stop()});
- viewport.addEventListener('mouseleave',()=>{paused=false;start()});
- viewport.addEventListener('focusin',()=>{focusInside=true;stop()});
- viewport.addEventListener('focusout',()=>{focusInside=false;start()});
- viewport.addEventListener('touchstart',()=>{paused=true;stop()},{passive:true});
- viewport.addEventListener('touchend',()=>{paused=false;start()},{passive:true});
- viewport.addEventListener('scroll',updateDots,{passive:true});
- document.addEventListener('visibilitychange',start);
- reduce.addEventListener('change',start);
- window.addEventListener('resize',()=>{updateDots();start()});
- updateDots();start();
+(() => {
+  const viewport = document.getElementById('carouselShell');
+  const track = document.getElementById('carouselTrack');
+  const prev = document.getElementById('prevCard');
+  const next = document.getElementById('nextCard');
+  if (!viewport || !track) return;
+  const cards = [...track.querySelectorAll('.serviceCard')];
+  const dots = [...document.querySelectorAll('#servicos .carouselDots span')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const interval = 3200;
+  let timer;
+
+  const stride = () => {
+    if (!cards[0]) return 0;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return cards[0].getBoundingClientRect().width + gap;
+  };
+  function paintDots() {
+    const current = Math.max(0, Math.round(viewport.scrollLeft / Math.max(stride(), 1)));
+    dots.forEach((dot, index) => dot.classList.toggle('isActive', index === current % dots.length));
+  }
+  function go(direction) {
+    if (cards.length < 2) return;
+    const max = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    if (max < 2) return;
+    const distance = stride();
+    const current = viewport.scrollLeft;
+    let target = current + direction * distance;
+    let wrap = false;
+    if (direction > 0 && (current >= max - 3 || target >= max + distance / 2)) {
+      target = 0;
+      wrap = true;
+    } else if (direction < 0 && current <= 3) {
+      target = max;
+      wrap = true;
+    } else {
+      target = Math.max(0, Math.min(max, target));
+    }
+    viewport.scrollTo({ left: target, behavior: wrap || reducedMotion.matches ? 'instant' : 'smooth' });
+    window.setTimeout(paintDots, 650);
+  }
+  function stop() { if (timer) clearInterval(timer); timer = null; }
+  function start() {
+    stop();
+    if (document.hidden || reducedMotion.matches || cards.length < 2) return;
+    timer = window.setInterval(() => go(1), interval);
+  }
+  prev?.addEventListener('click', () => { go(-1); start(); });
+  next?.addEventListener('click', () => { go(1); start(); });
+  viewport.addEventListener('scroll', paintDots, { passive: true });
+  viewport.addEventListener('touchstart', stop, { passive: true });
+  viewport.addEventListener('touchend', start, { passive: true });
+  document.addEventListener('visibilitychange', start);
+  reducedMotion.addEventListener('change', start);
+  window.addEventListener('resize', paintDots, { passive: true });
+  paintDots();
+  start();
 })();
 </script>
 </body></html>
