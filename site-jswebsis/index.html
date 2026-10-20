@@ -51,6 +51,21 @@ rgba(4,27,36,.88) 52%,rgba(4,27,36,.42) 66%,rgba(4,27,36,.06) 83%,transparent 10
  .hero:after{background:none}
 }
 </style>
+<style id="js-carousel-fix">
+#servicos .carouselControls{display:flex;gap:10px;align-items:center}
+#servicos .circleNav{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border:1px solid #437582;border-radius:50%;background:#0d303d;color:#fff;cursor:pointer;font-size:24px;line-height:1}
+#servicos .circleNav:hover,#servicos .circleNav:focus-visible{background:#145467;border-color:#44e0e5}
+#servicos .carouselShell{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-behavior:smooth;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
+#servicos .carouselShell::-webkit-scrollbar{display:none}
+#servicos .carouselTrack{display:flex;gap:16px;width:100%;min-width:0;max-width:none;transform:none;animation:none!important;will-change:auto}
+#servicos .serviceCard{flex:0 0 calc((100% - 32px)/3);width:calc((100% - 32px)/3);min-width:0;max-width:none;scroll-snap-align:start}
+#servicos .carouselDots{display:flex;gap:8px;justify-content:center;align-items:center;min-height:12px;margin-top:14px}
+#servicos .carouselDots span{display:block;width:25px;height:4px;border-radius:9px;background:#2a5262}
+#servicos .carouselDots span.isActive{background:#39e2e6}
+@media(max-width:960px){#servicos .serviceCard{flex-basis:calc((100% - 16px)/2);width:calc((100% - 16px)/2)}}
+@media(max-width:600px){#servicos .serviceCard{flex-basis:100%;width:100%}}
+@media(prefers-reduced-motion:reduce){#servicos .carouselShell{scroll-behavior:auto}}
+</style>
 </head>
 <body>
 <a class="skip" href="#principal">Pular para conteúdo</a>
@@ -193,5 +208,57 @@ rgba(4,27,36,.88) 52%,rgba(4,27,36,.42) 66%,rgba(4,27,36,.06) 83%,transparent 10
                 setInterval(checkLicense, 5000);
               })();
             
+</script>
+<script id="js-carousel-automatico">
+(()=>{
+ const viewport=document.getElementById('carouselShell');
+ const track=document.getElementById('carouselTrack');
+ const previous=document.getElementById('prevCard');
+ const next=document.getElementById('nextCard');
+ if(!viewport||!track) return;
+ const cards=Array.from(track.querySelectorAll('.serviceCard'));
+ const dots=Array.from(document.querySelectorAll('#servicos .carouselDots span'));
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let timer=null,paused=false,focusInside=false;
+ function step(){
+   if(cards.length===0)return 0;
+   const gap=parseFloat(getComputedStyle(track).columnGap)||0;
+   return cards[0].getBoundingClientRect().width+gap;
+ }
+ function index(){return step()>0?Math.round(viewport.scrollLeft/step()):0;}
+ function updateDots(){
+   const at=Math.max(0,Math.min(cards.length-1,index()));
+   dots.forEach((d,i)=>d.classList.toggle('isActive',i===at%dots.length));
+ }
+ function advance(direction){
+   if(cards.length<2)return;
+   const max=viewport.scrollWidth-viewport.clientWidth;
+   if(max<2)return;
+   const nextPosition=Math.min(max,Math.max(0,viewport.scrollLeft+direction*step()));
+   const atBoundary=direction>0&&viewport.scrollLeft>=max-3;
+   const atStart=direction<0&&viewport.scrollLeft<=3;
+   viewport.scrollTo({left:atBoundary?0:(atStart?max:nextPosition),behavior:reduce.matches?'auto':'smooth'});
+   window.setTimeout(updateDots,650);
+ }
+ function stop(){if(timer!==null)clearInterval(timer);timer=null;}
+ function start(){
+   stop();
+   if(reduce.matches||paused||focusInside||document.hidden||cards.length<2)return;
+   timer=window.setInterval(()=>advance(1),3600);
+ }
+ previous?.addEventListener('click',()=>{advance(-1);start()});
+ next?.addEventListener('click',()=>{advance(1);start()});
+ viewport.addEventListener('mouseenter',()=>{paused=true;stop()});
+ viewport.addEventListener('mouseleave',()=>{paused=false;start()});
+ viewport.addEventListener('focusin',()=>{focusInside=true;stop()});
+ viewport.addEventListener('focusout',()=>{focusInside=false;start()});
+ viewport.addEventListener('touchstart',()=>{paused=true;stop()},{passive:true});
+ viewport.addEventListener('touchend',()=>{paused=false;start()},{passive:true});
+ viewport.addEventListener('scroll',updateDots,{passive:true});
+ document.addEventListener('visibilitychange',start);
+ reduce.addEventListener('change',start);
+ window.addEventListener('resize',()=>{updateDots();start()});
+ updateDots();start();
+})();
 </script>
 </body></html>
