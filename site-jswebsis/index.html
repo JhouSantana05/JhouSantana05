@@ -51,20 +51,18 @@ rgba(4,27,36,.88) 52%,rgba(4,27,36,.42) 66%,rgba(4,27,36,.06) 83%,transparent 10
  .hero:after{background:none}
 }
 </style>
-<style id="js-carousel-fix">
-#servicos .carouselControls{display:flex;gap:10px;align-items:center}
-#servicos .circleNav{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border:1px solid #437582;border-radius:50%;background:#0d303d;color:#fff;cursor:pointer;font-size:24px;line-height:1}
-#servicos .circleNav:hover,#servicos .circleNav:focus-visible{background:#145467;border-color:#44e0e5}
-#servicos .carouselShell{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-behavior:smooth;scroll-snap-type:x mandatory;overscroll-behavior-x:contain}
-#servicos .carouselShell::-webkit-scrollbar{display:none}
-#servicos .carouselTrack{display:flex;gap:16px;width:100%;min-width:0;max-width:none;transform:none;animation:none!important;will-change:auto}
-#servicos .serviceCard{flex:0 0 calc((100% - 32px)/3);width:calc((100% - 32px)/3);min-width:0;max-width:none;scroll-snap-align:start}
-#servicos .carouselDots{display:flex;gap:8px;justify-content:center;align-items:center;min-height:12px;margin-top:14px}
-#servicos .carouselDots span{display:block;width:25px;height:4px;border-radius:9px;background:#2a5262}
-#servicos .carouselDots span.isActive{background:#39e2e6}
-@media(max-width:960px){#servicos .serviceCard{flex-basis:calc((100% - 16px)/2);width:calc((100% - 16px)/2)}}
-@media(max-width:600px){#servicos .serviceCard{flex-basis:100%;width:100%}}
-@media(prefers-reduced-motion:reduce){#servicos .carouselShell{scroll-behavior:auto}}
+<style id="js-carousel-v5">
+#servicos .carouselControls{display:flex;gap:9px}
+#servicos .circleNav{display:grid;place-items:center;min-width:36px;min-height:36px;border-radius:50%;background:#0d303d;color:#eefcff;border:1px solid #4b8690;cursor:pointer;font-size:24px}
+#servicos .carouselShell{--visible:3;--gap:16px;overflow:hidden!important;position:relative;width:min(100% - 32px,1200px);margin-inline:auto;scroll-snap-type:none!important}
+#servicos .carouselTrack{display:flex!important;grid-template-columns:none!important;gap:var(--gap)!important;width:100%!important;min-width:0!important;max-width:none!important;transform:translate3d(0,0,0);transition:transform .66s cubic-bezier(.21,.75,.25,1);animation:none!important;will-change:transform}
+#servicos .serviceCard{box-sizing:border-box;flex:0 0 calc((100% - (var(--visible) - 1)*var(--gap))/var(--visible))!important;width:calc((100% - (var(--visible) - 1)*var(--gap))/var(--visible))!important;min-width:0!important;max-width:none!important;height:auto!important;scroll-snap-align:none!important}
+#servicos .carouselDots{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:16px}
+#servicos .carouselDots span{width:28px;height:4px;flex:0 0 28px;background:#245363;border-radius:10px}
+#servicos .carouselDots span.isActive{background:var(--cyan)}
+@media(max-width:900px){#servicos .carouselShell{--visible:2}}
+@media(max-width:580px){#servicos .carouselShell{--visible:1}}
+@media(prefers-reduced-motion:reduce){#servicos .carouselTrack{transition:none}}
 </style>
 </head>
 <body>
@@ -129,144 +127,38 @@ rgba(4,27,36,.88) 52%,rgba(4,27,36,.42) 66%,rgba(4,27,36,.06) 83%,transparent 10
  document.querySelector('#year').textContent=new Date().getFullYear();
 })();
 </script>
-<script id="js-waas-license" defer>
-
-              (function() {
-                const CLIENT_ID = "cli_1790284773704";
-                const FIREBASE_PROJECT = "js-manager-waas-js";
-                const OVERLAY_ID = "js-waas-maintenance-screen";
-
-                function showMaintenanceScreen() {
-                  if (document.getElementById(OVERLAY_ID)) return;
-
-                  // Bloqueia rolagem do site original
-                  document.documentElement.style.overflow = 'hidden';
-                  document.body.style.overflow = 'hidden';
-
-                  const overlay = document.createElement('div');
-                  overlay.id = OVERLAY_ID;
-                  overlay.style.cssText = "position:fixed;inset:0;z-index:2147483647;background:radial-gradient(circle at 50% 35%, #161a2e 0%, #080b14 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#ffffff;text-align:center;box-sizing:border-box;";
-
-                  overlay.innerHTML = '<div style="max-width:560px;width:100%;background:rgba(18,24,40,0.96);border:1px solid rgba(244,63,94,0.35);border-radius:28px;padding:44px 32px;box-shadow:0 0 60px rgba(0,0,0,0.9),0 0 40px rgba(244,63,94,0.15);display:flex;flex-direction:column;align-items:center;box-sizing:border-box;">' +
-                    '<div style="width:80px;height:80px;border-radius:24px;background:rgba(244,63,94,0.12);border:1.5px solid rgba(244,63,94,0.4);display:flex;align-items:center;justify-content:center;margin-bottom:24px;box-shadow:0 0 30px rgba(244,63,94,0.25);">' +
-                      '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
-                        '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>' +
-                      '</svg>' +
-                    '</div>' +
-                    '<span style="display:inline-block;padding:4px 14px;border-radius:20px;background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.3);color:#fb7185;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;">' +
-                      'Aviso Importante' +
-                    '</span>' +
-                    '<h1 style="margin:0 0 14px;font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#ffffff;line-height:1.2;">' +
-                      'Site em Manutenção' +
-                    '</h1>' +
-                    '<p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#94a3b8;max-width:440px;">' +
-                      'Este site encontra-se temporariamente em manutenção programada e regularização técnica. O acesso será restabelecido automaticamente em breve.' +
-                    '</p>' +
-                    '<a href="https://wa.me/5511954532927?text=Ol%C3%A1%20Jhones%2C%20estou%20vendo%20o%20aviso%20de%20manuten%C3%A7%C3%A3o%20no%20meu%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:380px;padding:14px 24px;border-radius:16px;background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 0 25px rgba(16,185,129,0.35);box-sizing:border-box;">' +
-                      'Falar com Suporte Técnico (WhatsApp)' +
-                    '</a>' +
-                    '<div style="margin-top:20px;font-size:11px;color:#64748b;font-family:monospace;">' +
-                      'JS Web Negócios • Infraestrutura & Licenciamento' +
-                    '</div>' +
-                  '</div>';
-
-                  document.body.appendChild(overlay);
-                }
-
-                function hideMaintenanceScreen() {
-                  const overlay = document.getElementById(OVERLAY_ID);
-                  if (overlay) {
-                    overlay.remove();
-                    document.documentElement.style.overflow = '';
-                    document.body.style.overflow = '';
-                  }
-                }
-
-                async function checkLicense() {
-                  try {
-                    const url = "https://firestore.googleapis.com/v1/projects/" + FIREBASE_PROJECT + "/databases/(default)/documents/clients/" + CLIENT_ID + "?t=" + Date.now();
-                    const res = await fetch(url);
-                    if (!res.ok) return;
-                    const data = await res.json();
-                    const status = data.fields?.status?.stringValue || 'ativo';
-
-                    if (status === 'suspenso') {
-                      showMaintenanceScreen();
-                    } else {
-                      hideMaintenanceScreen();
-                    }
-                  } catch (err) {
-                    console.warn('[JS Manager WaaS] Erro na verificação:', err);
-                  }
-                }
-
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', checkLicense);
-                } else {
-                  checkLicense();
-                }
-                setInterval(checkLicense, 5000);
-              })();
-            
-</script>
-<script id="js-carousel-automatico">
-(() => {
-  const viewport = document.getElementById('carouselShell');
-  const track = document.getElementById('carouselTrack');
-  const prev = document.getElementById('prevCard');
-  const next = document.getElementById('nextCard');
-  if (!viewport || !track) return;
-  const cards = [...track.querySelectorAll('.serviceCard')];
-  const dots = [...document.querySelectorAll('#servicos .carouselDots span')];
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const interval = 3200;
-  let timer;
-
-  const stride = () => {
-    if (!cards[0]) return 0;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    return cards[0].getBoundingClientRect().width + gap;
-  };
-  function paintDots() {
-    const current = Math.max(0, Math.round(viewport.scrollLeft / Math.max(stride(), 1)));
-    dots.forEach((dot, index) => dot.classList.toggle('isActive', index === current % dots.length));
-  }
-  function go(direction) {
-    if (cards.length < 2) return;
-    const max = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-    if (max < 2) return;
-    const distance = stride();
-    const current = viewport.scrollLeft;
-    let target = current + direction * distance;
-    let wrap = false;
-    if (direction > 0 && (current >= max - 3 || target >= max + distance / 2)) {
-      target = 0;
-      wrap = true;
-    } else if (direction < 0 && current <= 3) {
-      target = max;
-      wrap = true;
-    } else {
-      target = Math.max(0, Math.min(max, target));
-    }
-    viewport.scrollTo({ left: target, behavior: wrap || reducedMotion.matches ? 'instant' : 'smooth' });
-    window.setTimeout(paintDots, 650);
-  }
-  function stop() { if (timer) clearInterval(timer); timer = null; }
-  function start() {
-    stop();
-    if (document.hidden || reducedMotion.matches || cards.length < 2) return;
-    timer = window.setInterval(() => go(1), interval);
-  }
-  prev?.addEventListener('click', () => { go(-1); start(); });
-  next?.addEventListener('click', () => { go(1); start(); });
-  viewport.addEventListener('scroll', paintDots, { passive: true });
-  viewport.addEventListener('touchstart', stop, { passive: true });
-  viewport.addEventListener('touchend', start, { passive: true });
-  document.addEventListener('visibilitychange', start);
-  reducedMotion.addEventListener('change', start);
-  window.addEventListener('resize', paintDots, { passive: true });
-  paintDots();
-  start();
+<script id="js-carousel-v5">
+(()=>{
+const viewport=document.getElementById('carouselShell');
+const track=document.getElementById('carouselTrack');
+const prev=document.getElementById('prevCard');
+const next=document.getElementById('nextCard');
+if(!viewport||!track)return;
+const cards=[...track.querySelectorAll(':scope > .serviceCard')];
+const dotsWrap=document.querySelector('#servicos .carouselDots');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let current=0;
+let interval=null;
+function visible(){return Math.max(1,Math.min(cards.length,Number.parseInt(getComputedStyle(viewport).getPropertyValue('--visible'),10)||1));}
+function last(){return Math.max(0,cards.length-visible());}
+function render(){
+ current=Math.max(0,Math.min(last(),current));
+ const gap=parseFloat(getComputedStyle(track).gap)||16;
+ const cardWidth=cards[0]?.getBoundingClientRect().width||0;
+ track.style.transform=`translate3d(${-current*(cardWidth+gap)}px,0,0)`;
+ if(dotsWrap){dotsWrap.replaceChildren();for(let i=0;i<=last();i++){const dot=document.createElement('span');dot.classList.toggle('isActive',i===current);dot.setAttribute('aria-hidden','true');dotsWrap.append(dot);}}
+}
+function go(d){current=current+d;if(current>last())current=0;if(current<0)current=last();render();}
+function stop(){if(interval!==null)window.clearInterval(interval);interval=null;}
+function start(){stop();if(reduced.matches||document.hidden||cards.length<=visible())return;interval=window.setInterval(()=>go(1),3000);}
+next?.addEventListener('click',()=>{go(1);start()});
+prev?.addEventListener('click',()=>{go(-1);start()});
+viewport.addEventListener('focusin',stop);
+viewport.addEventListener('focusout',start);
+document.addEventListener('visibilitychange',start);
+reduced.addEventListener('change',start);
+window.addEventListener('resize',()=>{render();start()});
+render();start();
 })();
 </script>
 </body></html>
